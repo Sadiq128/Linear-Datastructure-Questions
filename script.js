@@ -59,43 +59,22 @@ function findPairsWithSum(arr, targetSum) {
 
  //Q3 Write a program to check if two strings are a rotation of each other?
 
- 
-function firstNonRepeatedCharacter(str) {
-  const charCount = {};
-
-  // Count the frequency of each character in the string
-  for (let i = 0; i < str.length; i++) {
-    const char = str[i];
-    if (charCount[char]) {
-      charCount[char]++;
-    } else {
-      charCount[char] = 1;
+ const inp1='hello',inp2='olleh'
+if(inp1.length==inp2.length){
+    let i
+    for(i=0;i<inp1.length;i++){
+        if(inp1[i]!=inp2[inp2.length-1-i]){
+            console.log('given two strings are a " NOT "  rotation of each other');
+            break
+        }
     }
-  }
-
-  // Find the first non-repeated character
-  for (let i = 0; i < str.length; i++) {
-    const char = str[i];
-    if (charCount[char] === 1) {
-      return char;
+    if(i==inp2.length){
+        console.log('given two strings are THE rotation of each other');
     }
-  }
-
-  // If no non-repeated character is found, return null or a message
-  return null;
 }
-
-// Test cases
-const str1 = "aabbcc";
-const str2 = "abcdef";
-const str3 = "aabbccddee";
-const str4 = "abcabc";
-
-console.log(firstNonRepeatedCharacter(str1)); // Output: null (no non-repeated characters)
-console.log(firstNonRepeatedCharacter(str2)); // Output: "a" (the first non-repeated character)
-console.log(firstNonRepeatedCharacter(str3)); // Output: null (no non-repeated characters)
-console.log(firstNonRepeatedCharacter(str4)); 
-
+else{
+    console.log('given two strings are a " NOT "  rotation of each other');
+}
 
 
 
@@ -104,310 +83,157 @@ console.log(firstNonRepeatedCharacter(str4));
 
 //Q4  Write a program to print the first non-repeated character from a string?
 
-
-function firstNonRepeatedCharacter(str) {
-    const charCount = {};
-  
-    // Count the frequency of each character in the string
-    for (let i = 0; i < str.length; i++) {
-      const char = str[i];
-      if (charCount[char]) {
-        charCount[char]++;
-      } else {
-        charCount[char] = 1;
-      }
+const input='he345la12oa4876flsloffgwmzcam'
+for(let i of input){
+    if(input.indexOf(i)==input.lastIndexOf(i)){
+        console.log('\t"',i,'"is the first non-repeated character in "',input,'" string');
+        break
     }
-  
-    // Find the first non-repeated character
-    for (let i = 0; i < str.length; i++) {
-      const char = str[i];
-      if (charCount[char] === 1) {
-        return char;
-      }
-    }
-  
-    // If no non-repeated character is found, return null or a message
-    return null;
-  }
-  
-  // Test cases
-  const str5 = "aabbcc";
-  const str6 = "abcdef";
-  const str7 = "aabbccddee";
-  const str8 = "abcabc";
-  
-  console.log(firstNonRepeatedCharacter(str1)); // Output: null (no non-repeated characters)
-  console.log(firstNonRepeatedCharacter(str2)); // Output: "a" (the first non-repeated character)
-  console.log(firstNonRepeatedCharacter(str3)); // Output: null (no non-repeated characters)
-  console.log(firstNonRepeatedCharacter(str4)); 
-
+}
 
 
 //Q5. Read about the Tower of Hanoi algorithm. Write a program to implement it.
-
-function towerOfHanoi(n, sourcePeg, auxiliaryPeg, targetPeg) {
-    if (n === 1) {
-      // If there's only one disk, move it from source to target peg
-      console.log(`Move disk 1 from ${sourcePeg} to ${targetPeg}`);
-      return;
+const no=4  // Enter No.of disc's
+const Hanoi=(n,S,D,A)=>{        // number of disc's , Sourse Pole , Destination Pole  , Auxilary Pole
+    if(n!=0){
+        Hanoi(n-1,S,A,D)
+        console.log('\t',n+'st disc       ',S,' --> ',D)
+        Hanoi(n-1,A,D,S)
     }
-  
-    // Move n-1 disks from source to auxiliary peg using target as the auxiliary
-    towerOfHanoi(n - 1, sourcePeg, targetPeg, auxiliaryPeg);
-  
-    // Move the nth disk from source to target peg
-    console.log(`Move disk ${n} from ${sourcePeg} to ${targetPeg}`);
-  
-    // Move the n-1 disks from auxiliary to target peg using source as the auxiliary
-    towerOfHanoi(n - 1, auxiliaryPeg, sourcePeg, targetPeg);
-  }
-  
-  // Example usage:
-  const numDisks = 3;
-  const source = 'A';
-  const auxiliary = 'B';
-  const target = 'C';
-  
-  towerOfHanoi(numDisks, source, auxiliary, target);
-  
-
-  //Q6. Read about infix, prefix, and postfix expressions. Write a program to convert postfix to prefix expression
-
-  function isOperator(char) {
-    // Check if a character is an operator (+, -, *, /, etc.)
-    return ['+', '-', '*', '/', '^'].includes(char);
-  }
-  
-  function postfixToPrefix(postfixExpression) {
-    const stack = [];
-    
-    for (let char of postfixExpression) {
-      if (!isOperator(char)) {
-        // If the character is an operand, push it onto the stack
-        stack.push(char);
-      } else {
-        // If the character is an operator, pop two operands from the stack
-        const operand2 = stack.pop();
-        const operand1 = stack.pop();
-  
-        // Combine them with the operator and push the result back onto the stack
-        const prefixExpression = char + operand1 + operand2;
-        stack.push(prefixExpression);
-      }
-    }
-  
-    // The final element in the stack is the prefix expression
-    return stack.pop();
-  }
-  
-  // Example usage:
-  const postfixExpression = "34+5*";
-  const prefixExpression = postfixToPrefix(postfixExpression);
-  console.log("Prefix Expression:", prefixExpression); //
+}
+Hanoi(no,'Sourse Pole','Destination Pole','Auxilary Pole')
 
 
+  //Q6. Read about infix, prefix, and postfix expressions. Write a program to convert postfix to prefix expression.
 
-  //Q7. Write a program to convert prefix expression to infix expression.in js
-
-
-
-  function isOperator(char) {
-    // Check if a character is an operator (+, -, *, /, etc.)
-    return ['+', '-', '*', '/', '^'].includes(char);
-  }
-  
-  function prefixToInfix(prefixExpression) {
-    const stack = [];
-  
-    // Reverse the prefix expression to process it from left to right
-    prefixExpression = prefixExpression.split('').reverse().join('');
-  
-    for (let char of prefixExpression) {
-      if (!isOperator(char)) {
-        // If the character is an operand, push it onto the stack
-        stack.push(char);
-      } else {
-        // If the character is an operator, pop two operands from the stack
-        const operand1 = stack.pop();
-        const operand2 = stack.pop();
-  
-        // Combine them with the operator and push the result back onto the stack
-        const infixExpression = `(${operand1}${char}${operand2})`;
-        stack.push(infixExpression);
-      }
-    }
-  
-    // The final element in the stack is the infix expression
-    return stack.pop();
-  }
-  
-  // Example usage:
-  const prefixExpression2 = "*+AB-CD"; // This represents the expression (A+B)*(C-D)
-  const infixExpression = prefixToInfix(prefixExpression);
-  console.log("Infix Expression:", infixExpression); // Output: "(A+B)*(C-D)"
-  //Q8. Write a program to check if all the brackets are closed in a given code snippet.
-
-
-
-  function areBracketsClosed(codeSnippet) {
-    const stack = [];
-    const brackets = {
-      "(": ")",
-      "{": "}",
-      "[": "]"
-    };
-  
-    for (let char of codeSnippet) {
-      if (brackets[char]) {
-        // If the character is an opening bracket, push it onto the stack
-        stack.push(char);
-      } else if (char === ")" || char === "}" || char === "]") {
-        // If the character is a closing bracket
-        if (!stack.length) {
-          // If the stack is empty, it means there's no matching opening bracket
-          return false;
+const isOperator=x=>('+-/*'.includes(x))?true:false;
+function postToPre(post_exp){
+    let s=[],length=post_exp.length
+    for(let i=0;i<length;i++){
+        if(isOperator(post_exp[i])){
+            let op1=s[s.length-1];
+            s.pop();
+            let op2=s[s.length-1]
+            s.pop()
+            let temp=post_exp[i]+op2+op1;
+            s.push(temp);
         }
-  
-        const lastBracket = stack.pop();
-        if (brackets[lastBracket] !== char) {
-          // If the closing bracket doesn't match the most recent opening bracket
-          return false;
+        else{
+            s.push(post_exp[i]+'')
         }
-      }
     }
-  
-    // If there are still open brackets in the stack, they are not properly closed
-    return stack.length === 0;
+    let ans='';
+    while(s.length>0){
+        ans+=s.pop();
+    }
+    return ans;
+}
+let post_exp='234/-26/7-*'
+
+console.log('prefix: '+postToPre(post_exp));
+
+
+
+ //Q7. Write a program to convert prefix expression to infix expression.
+const isOperator2=x=>('+-/*'.includes(x))?true:false;
+const convert=str=>{
+    let stack=[],l=str.length
+    for(let i=l-1;i>=0;i--){
+        let c=str[i];
+        if(isOperator2(c)){
+            let op1=stack[stack.length-1]
+            stack.pop()
+            let op2=stack[stack.length-1];
+            stack.pop();
+            let temp='('+op1+c+op2+')';
+            stack.push(temp);
+        }
+        else{
+            stack.push(c+'');
+        }
+    }
+    return stack[stack.length-1];
+}
+let exp='*-3/45-/345';
+console.log('infix : '+convert(exp));
+
+
+
+
+//Q8. Write a program to check if all the brackets are closed in a given code snippet.
+const checkPair=(a,b)=>{
+  if(b==')'){
+      return (a=='(')?true:false
   }
-  
-  // Test cases
-  const code1 = "(a + b) * [c - {d + e}]";
-  const code2 = "({[})]";
-  const code3 = "if (x > 0) { console.log('Hello'); }";
-  
-  console.log(areBracketsClosed(code1)); // Output: true (all brackets are closed)
-  console.log(areBracketsClosed(code2)); // Output: false (brackets are not properly closed)
-  console.log(areBracketsClosed(code3)); // Output: true (all brackets are closed)
-  
-
-
-
-  //Q9. Write a program to reverse a stack.
-
-
-  class Stack {
-    constructor() {
-      this.items = [];
-    }
-  
-    push(item) {
-      this.items.push(item);
-    }
-  
-    pop() {
-      if (this.isEmpty()) {
-        return null;
-      }
-      return this.items.pop();
-    }
-  
-    isEmpty() {
-      return this.items.length === 0;
-    }
-  
-    peek() {
-      if (this.isEmpty()) {
-        return null;
-      }
-      return this.items[this.items.length - 1];
-    }
+  if(b=='}'){
+      return (a=='{')?true:false
   }
-  
-  function reverseStack(stack) {
-    const auxiliaryStack = new Stack();
-  
-    // Pop elements from the original stack and push them onto the auxiliary stack
-    while (!stack.isEmpty()) {
-      auxiliaryStack.push(stack.pop());
-    }
-  
-    // Pop elements from the auxiliary stack and push them back onto the original stack
-    while (!auxiliaryStack.isEmpty()) {
-      stack.push(auxiliaryStack.pop());
-    }
+  if(b==']'){
+      return (a=='[')?true:false
   }
-  
-  // Test the reverseStack function
-  const myStack = new Stack();
-  myStack.push(1);
-  myStack.push(2);
-  myStack.push(3);
-  myStack.push(4);
-  
-  console.log("Original Stack:", myStack.items); // Output: Original Stack: [1, 2, 3, 4]
-  
-  reverseStack(myStack);
-  
-  console.log("Reversed Stack:", myStack.items); // Ou
-
-
-//  Q10. Write a program to find the smallest number using a stack.
-
-
-
-class MinStack {
-    constructor() {
-      this.stack = [];
-      this.minStack = [];
-    }
-  
-    push(value) {
-      this.stack.push(value);
-  
-      if (this.minStack.length === 0 || value <= this.getMin()) {
-        this.minStack.push(value);
+}
+const checkBrackets=str=>{
+  let store=[];
+  for(let i of str.split('')){
+      // console.clear()
+      console.log(' i ->',i);
+      if('({['.includes(i)){
+          store.push(i)
       }
-    }
-  
-    pop() {
-      if (this.stack.length === 0) {
-        return null;
+      else{
+          if(')}]'.includes(i)){
+              if(store.length==0){
+                  console.log('Not Balanced');return;
+              }
+              if(checkPair(store[store.length-1],i)){
+                  store.pop();
+              }
+              else{
+                  console.log('\nNot Balanced');return;
+              }
+          }
       }
-  
-      const poppedValue = this.stack.pop();
-  
-      if (poppedValue === this.getMin()) {
-        this.minStack.pop();
-      }
-  
-      return poppedValue;
-    }
-  
-    top() {
-      if (this.stack.length === 0) {
-        return null;
-      }
-      return this.stack[this.stack.length - 1];
-    }
-  
-    getMin() {
-      if (this.minStack.length === 0) {
-        return null;
-      }
-      return this.minStack[this.minStack.length - 1];
-    }
+      console.log(' store -> ',...store);
   }
-  
-  // Example usage:
-  const minStack = new MinStack();
-  
-  minStack.push(3);
-  minStack.push(5);
-  minStack.push(2);
-  minStack.push(1);
-  
-  console.log("Smallest number:", minStack.getMin()); // Output: Smallest number: 1
-  
-  minStack.pop();
-  
-  console.log("Smallest number:", minStack.getMin()); // Out
+  if(store.length==0){
+      console.log('Balenced');
+  }else{
+      console.log('NOT Balanced');
+  }
+}
+checkBrackets('{()}[([])]')
+//Q9. Write a program to reverse a stack.
+class stack{
+  constructor(){
+      this.store=[]
+  }
+  push=value=>this.store.unshift(value)
+  show=()=>this.store
+}
+const reverseString=str=>{
+  let a=new stack()
+  for(let i of str.split('')){
+      a.push(i)
+  }
+  console.log(a.show().join(''));
+}
+reverseString('12345')
+
+
+//Q10. Write a program to find the smallest number using a stack.
+class stack2{
+  constructor(){
+      this.store=[]
+  }
+  push=(value)=>this.store.push(value)
+  min=()=>Math.min(...this.store)
+}
+const minInArray=arr=>{
+  let a=new stack2()
+  for(let i of arr){
+      a.push(i)
+  }
+  console.log(a.min());
+}
+
+minInArray([1,2,3,4,-5,8,-7,5,-4,3,2])
